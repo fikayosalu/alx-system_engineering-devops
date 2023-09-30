@@ -1,2 +1,1 @@
 Understanding shell permission
-
