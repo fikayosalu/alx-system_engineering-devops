@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#Script that iterate 10 times, displays "bad luck" for the 4th loop
+#"good luck" for the 8th loop and displays "best school" for others
+
+i=1
+while [ $i -lt 101 ]
+do
+	if [ $((i % 3)) -eq 0 ] && [ $((i % 5)) -eq 0 ]; then
+		echo "FizzBuzz"
+	elif [ $((i % 3)) -eq 0 ]; then
+		echo "Fizz"
+	elif [ $((i % 5)) -eq 0 ]; then
+		echo "Buzz"
+	else
+		echo "$i"
+	fi
+	i=$((i + 1))
+done
