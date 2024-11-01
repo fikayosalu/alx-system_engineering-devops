@@ -4,7 +4,7 @@
 #Displays minutes from 1 to 59
 
 i=0
-while [ $i -lt 12 ]
+while [ $i -lt 13 ]
 do
 	echo "Hour: $i"
 	j=1
