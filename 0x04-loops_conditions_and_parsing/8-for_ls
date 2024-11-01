@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#Script that displays "Best School" 10 times using for loop
+
+for i in ./*
+do
+	if [[ "$i" == *-* ]]; then
+		
+		name=$(echo "$i" | cut -d '-' -f 2)
+		echo "$name"
+	fi
+done
