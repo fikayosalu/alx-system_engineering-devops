@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Update package list and install NGINX
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+# Create a new configuration file or modify the default configuration
+sudo tee /etc/nginx/sites-available/default > /dev/null <<EOL
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    root /var/www/html;
+    index index.html index.htm;
+
+    server_name _;
+
+    # Redirect /redirect_me to another page
+    location /redirect_me {
+        return 301 http://example.com;
+    }
+
+    # Default catch-all location
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOL
+
+# Restart NGINX using the service command
+sudo service nginx restart
+
+# Verify the redirection setup
+curl -I http://localhost/redirect_me
