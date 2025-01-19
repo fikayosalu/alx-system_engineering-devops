@@ -1,1 +1,6 @@
-Hello world!
+#!/usr/bin/env bash
+
+sed -i "/server_name/a\\
+location /redirect_me {\\
+return 301 https://youtube.com/watch;\\
+}" ./some_page.html
