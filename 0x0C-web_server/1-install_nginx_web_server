@@ -4,6 +4,6 @@ sudo apt-get update -y
 sudo apt-get install nginx -y
 
 # Replace the default NGINX page content with "Hello World!"
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
 sudo service nginx restart
