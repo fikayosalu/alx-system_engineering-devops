@@ -1,10 +1,7 @@
 # Create a file 'school' with contents 'I love Puppets' in /tmp
 
-file { 'school file':
-  ensure  => 'present',
-  path    => '/tmp/school',
-  group   => 'www-data',
+file { '/tmp/school':
   owner   => 'www-data',
-  mode    => '0774',
+  mode    => '0744',
   content => 'I love Puppet'
 }
