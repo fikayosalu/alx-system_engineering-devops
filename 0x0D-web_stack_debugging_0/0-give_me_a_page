@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Return a page containing Hello ALX when querying the root of it
+echo "Hello ALX" | tee /var/www/html/index.html
