@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Configures nginx
+sudo apt-get update -y
+sudo apt-get install nginx -y
+
+#start the nginx server
+sudo service start
+
+# set up ufw firewall
+sudo ufw allow 'OpenSSH'
+sudo ufw enable -y
+sudo ufw allow 'Nginx HTTP'
+
+# Set up your default NGINX page content with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Create a permanent redirect
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default 
+
+# restart nginx
+sudo service nginx restart
