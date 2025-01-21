@@ -15,10 +15,10 @@ sudo ufw allow 'Nginx HTTP'
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # Create a permanent redirect
-sudo sed -i '24i\
+sudo sed -i "24i\
 	location /redirect_me {\n\
 	return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\
-}' /etc/nginx/sites-available/default 
+}" /etc/nginx/sites-available/default 
 
 # restart nginx
 sudo service nginx restart
