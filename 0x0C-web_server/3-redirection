@@ -3,12 +3,21 @@
 sudo apt-get update -y
 sudo apt-get install nginx -y
 
-# Replace the default NGINX page content with "Hello World!"
+#start the nginx server
+sudo service start
+
+# set up ufw firewall
+sudo ufw allow 'OpenSSH'
+sudo ufw enable -y
+sudo ufw allow 'Nginx HTTP'
+
+# Set up your default NGINX page content with "Hello World!"
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
-sudo sed -i "/location/a\
-location /redirect_me {
-return 301 https://youtube.com/watch;
-}" /etc/nginx/sites-available/default 
+# Create a permanent redirect
+sudo sed -i '24i\	location /redirect_me {
+return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+}' /etc/nginx/sites-available/default 
 
+# restart nginx
 sudo service nginx restart
