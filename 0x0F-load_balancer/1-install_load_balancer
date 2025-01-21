@@ -20,6 +20,8 @@ frontend http_front
 # Backend: Distributes traffic among multiple servers
 backend backend_servers
         balance roundrobin
-        server web-01 35.174.185.171:80 check
-        server web-02 54.160.109.229:80 check
+        server 530569-web-01 35.174.185.171:80 check
+        server 530569-web-02 54.160.109.229:80 check
 END
+
+sudo service haproxy restart
