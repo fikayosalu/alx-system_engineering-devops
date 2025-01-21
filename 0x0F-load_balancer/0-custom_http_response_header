@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
-# Configure Nginx server with a Custom header in http response
+# Configure a new Ubuntu machine with Nginx server
+# Configure a Custom header in the http response of the server
 
+# Install nginx
+sudo apt update -y
+sudo apt install nginx -y
+
+# Configure a Custom header in the http response
 sudo sed -i '24i \        add_header X-Served-By "$hostname";' /etc/nginx/sites-available/default
 
 sudo service nginx restart
