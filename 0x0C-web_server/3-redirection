@@ -1,32 +1,21 @@
 #!/usr/bin/env bash
-# Configures a new ubuntu machine by installing Nginx
+# Configures nginx
+sudo apt-get update -y
+sudo apt-get install nginx -y
 
+#start the nginx server
+sudo service start
 
-sudo apt-get update -y -qq && \
-         sudo apt-get install nginx -y
-
-
-# starting nginx service
-sudo service nginx start
-
-# allowing nginx on firewall
+# set up ufw firewall
+sudo ufw allow 'OpenSSH'
+sudo ufw enable -y
 sudo ufw allow 'Nginx HTTP'
 
-# Give the user ownership to website files for easy editing
-sudo chown -R "$USER":"$USER" /var/www/html
-sudo chmod -R 755 /var/www
+# Set up your default NGINX page content with "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# Backup default index
-cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+# Create a permanent redirect
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default 
 
-# Creating new index
-echo -e "Hello World!" > /var/www/html/index.html
-
-# Setting up /redirect_me to a youtube video
-rule='       rewrite ^/redirect_me$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;'
-file_config="/etc/nginx/sites-available/default"
-sudo sed -i "24i\\$rule" $file_config
-
-
-# Restarting nginx
+# restart nginx
 sudo service nginx restart
