@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Configures a new Ubuntu machine with HAproxy as a load-balancer
+# Configure HAproxy to send traffic to 2 web servers using round-robin
+
+# Install Haproxy
+sudo apt-get install --no-install-recommends software-properties-common -y
+
+sudo add-apt-repository ppa:vbernat/haproxy-3.0 -y
+
+sudo apt-get install haproxy=3.0.\* -y
+
+# Configure HAproxy to balance traffic between 2 servers
+sudo tee -a /etc/haproxy/haproxy.cfg << END
+
+# Frontend: Receives incoming traffic
+frontend http_front
+        bind *:80
+        default_backend backend_servers
+
+# Backend: Distributes traffic among multiple servers
+backend backend_servers
+        balance roundrobin
+        server 530569-web-01 35.174.185.171:80 check
+        server 530569-web-02 54.160.109.229:80 check
+END

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+tee -a ./input << END
+# Front end
+frojdjd
+	duyyr
+	hdueu
+jduduu
+	ujueueu
+	hdueie
+	jfudfui
+END
