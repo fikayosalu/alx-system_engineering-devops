@@ -3,11 +3,10 @@
 # Configure HAproxy to send traffic to 2 web servers using round-robin
 
 # Install Haproxy
-sudo apt update -y
-
-sudo add-apt-repository ppa:vbernat/haproxy-3.0 -y
-
-sudo apt install haproxy -y
+sudo apt-get update
+sudo apt-get -y install --no-install-recommends software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.4
+sudo apt-get -y  install haproxy
 
 # Configure HAproxy to balance traffic between 2 servers
 sudo tee -a /etc/haproxy/haproxy.cfg << END
