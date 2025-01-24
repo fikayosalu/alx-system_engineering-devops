@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Script that displays information about subdomains
+
+declare -A subdomain
+subdomain['www']=$(dig 'www.'"$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $5}')
+subdomain['lb-01']=$(dig 'lb-01.'"$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $5}')
+subdomain['web-01']=$(dig 'web-01.'"$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $5}')
+subdomain['web-02']=$(dig 'web-02.'"$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $5}')
+
+domain_info() {
+	if [ $# -lt 2 ]; then
+		for key in "www" "lb-01" "web-01" "web-02"; do
+			echo "The subdomain ${key} is a $(dig ${key}'.'"$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $4}') record and points to ${subdomain[${key}]}"
+		done
+	elif [ $# -eq 2 ]; then
+		echo "The subdomain $2 is a $(dig "$2"'.'"$1" | grep -A1 'ANSWER SECTION:' | awk '{printf "%s", $4}') record and points to ${subdomain[$2]}"
+	fi
+}
+
+domain_info "$@"
