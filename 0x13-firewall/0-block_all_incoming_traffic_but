@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Install and setup ufw in Nginx
+sudo apt update
+sudo apt install ufw
+sudo ufw allow "OpenSSH"
+sudo ufw allow "Nginx Full"
+sudo ufw enable
