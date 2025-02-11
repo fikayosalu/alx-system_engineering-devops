@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """1-export_to_CSV module"""
+import csv
 import requests
 import sys
-import csv
 
 
 def fetch_and_export_csv(employee_id):
