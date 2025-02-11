@@ -16,7 +16,7 @@ def fetch_and_export_csv(employee_id):
 
     user_data = user_response.json()
     print(user_data)
-    employee_username = user_data.get("name", "Antonette")  # Using .get()
+    employee_username = user_data.get("username", "Antonette")  # Using .get()
 
     # Fetch employee's todo list
     todos_response = requests.get(f"{url}/todos?userId={employee_id}")
