@@ -7,9 +7,9 @@ package { 'nginx':
 
 # Ensure Nginx service is running
 service { 'nginx':
-  ensure    => running,
-  enable    => true,
-  require   => Package['nginx'],
+  ensure  => running,
+  enable  => true,
+  require => Package['nginx'],
 }
 
 # Modify Nginx configuration to optimize performance
@@ -61,7 +61,7 @@ http {
     }
 }
   "),
-  notify => Service['nginx'],
+  notify  => Service['nginx'],
 }
 
 # Restart Nginx to apply changes
